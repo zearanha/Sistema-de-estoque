@@ -8,13 +8,13 @@ class EstoqueModel {
 
     static criar(dados, callback){
         connection.query("INSERT INTO produtos (nome_produto, preco, imagem) VALUES (?, ?, ?)", 
-        [dados.nome_produto, dados.preco, dados.imagem], callback
+        [dados.nome_produto, dados.preco, dados.imagem, dados.quantidade || 0], callback
         );
     }
 
     static atualizar(id, dados, callback){
         connection.query("UPDATE produtos SET nome_produto = ?, preco = ?, imagem = ? WHERE id = ?", 
-        [dados.nome_produto, dados.preco, dados.imagem, id], callback
+        [dados.nome_produto, dados.preco, dados.imagem, dados.quantidade, id], callback
         );
     }
 
