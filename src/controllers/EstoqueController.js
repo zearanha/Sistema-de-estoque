@@ -1,5 +1,5 @@
 import e from "express";
-import EstoqueModel from "../models/estoqueModel";
+import EstoqueModel from "../models/estoqueModel.js";
 
 class EstoqueController {
     static listar(req, res) {
