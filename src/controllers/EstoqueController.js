@@ -1,4 +1,3 @@
-import e from "express";
 import EstoqueModel from "../models/estoqueModel.js";
 
 class EstoqueController {
@@ -12,9 +11,13 @@ class EstoqueController {
     static criar(req, res) {
         const { nome_produto, preco, quantidade } = req.body;
         const imagem = req.file ? req.file.filename : null;
+        console.log('Dados recebidos para inserção:', { nome_produto, preco, imagem, quantidade });
 
         EstoqueModel.criar({ nome_produto, preco, imagem, quantidade }, (err, results) => {
-            if (err) return res.status(500).send("Erro ao criar produto");
+            if (err) {
+                console.error('Erro ao inserir produto:', err);
+                return res.status(500).send("Erro ao criar produto");
+            }
             res.status(201).json({ id: results.insertId, nome_produto, preco, imagem, quantidade });
         });
     }

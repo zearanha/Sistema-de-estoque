@@ -1,7 +1,10 @@
-import mysql from 'mysql2'
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+// Adicione esta linha para ver o valor da variável de ambiente
+console.log('Valor da variável DB_DATABASE:', process.env.DB_DATABASE);
 
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -14,10 +17,9 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) {
         console.error('Error connecting to the database:', err);
-        return;
     } else {
         console.log('Connected to the database');
     }
-})
+});
 
-export default connection
+export default connection;

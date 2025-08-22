@@ -1,20 +1,10 @@
 import express from 'express';
-import multer from 'multer';
+import upload from '../config/multer.js';
 import EstoqueController from '../controllers/EstoqueController.js';
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'src/uploads/');
-    },
-    filename: (req, file, cb) => {
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
-    }
-});
 
-const upload = multer({ storage});
 
 router.get('/', EstoqueController.listar);
 router.post('/', upload.single("imagem"), EstoqueController.criar);
