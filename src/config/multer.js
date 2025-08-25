@@ -4,7 +4,7 @@ import path from "path";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "src/uploads/"); // pasta onde vai salvar as imagens
+    cb(null, "public/"); // pasta onde vai salvar as imagens
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);

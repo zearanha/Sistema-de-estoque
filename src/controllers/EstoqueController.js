@@ -4,13 +4,13 @@ class EstoqueController {
     static listar(req, res) {
         EstoqueModel.listar((err, results) => {
             if (err) return res.status(500).send("Erro ao buscar produtos");
-            res.status(200).json(results);
+            res.status(200).json({ produtos: results });
         });
     }
 
     static criar(req, res) {
         const { nome_produto, preco, quantidade } = req.body;
-        const imagem = req.file ? req.file.filename : null;
+        const imagem = req.file ? `/public/${req.file.filename}` : null;
         console.log('Dados recebidos para inserção:', { nome_produto, preco, imagem, quantidade });
 
         EstoqueModel.criar({ nome_produto, preco, imagem, quantidade }, (err, results) => {
@@ -25,7 +25,7 @@ class EstoqueController {
     static atualizar(req, res) {
         const { id } = req.params;
         const { nome_produto, preco, quantidade } = req.body;
-        const imagem = req.file ? req.file.filename : req.body.imagem;
+        const imagem = req.file ? `/public/${req.file.filename}` : req.body.imagem;
 
         EstoqueModel.atualizar(id, { nome_produto, preco, imagem, quantidade }, (err, results) => {
             if (err) return res.status(500).send("Erro ao atualizar produto");
