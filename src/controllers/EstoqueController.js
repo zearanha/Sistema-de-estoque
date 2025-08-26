@@ -11,7 +11,6 @@ class EstoqueController {
     static criar(req, res) {
         const { nome_produto, preco, quantidade } = req.body;
         const imagem = req.file ? `/public/${req.file.filename}` : null;
-        console.log('Dados recebidos para inserção:', { nome_produto, preco, imagem, quantidade });
 
         EstoqueModel.criar({ nome_produto, preco, imagem, quantidade }, (err, results) => {
             if (err) {

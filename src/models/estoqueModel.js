@@ -1,5 +1,4 @@
 import connection from "../config/db.mjs";
-import db from "../config/db.mjs";
 
 class EstoqueModel {
     static listar(callback){
