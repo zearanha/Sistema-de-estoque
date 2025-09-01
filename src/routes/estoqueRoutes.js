@@ -5,10 +5,9 @@ import EstoqueController from '../controllers/EstoqueController.js';
 const router = express.Router();
 
 
-
-router.get('/produtos', EstoqueController.listar);
-router.post('/produtos', upload.single("imagem"), EstoqueController.criar);
-router.put('/produtos/:id', upload.single("imagem"), EstoqueController.atualizar);
-router.delete('/produtos/:id', EstoqueController.deletar);
+router.get('/', EstoqueController.listar);
+router.post('/', upload.single("imagem"), EstoqueController.criar);
+router.put('/:id', upload.single("imagem"), EstoqueController.atualizar);
+router.delete('/:id', EstoqueController.deletar);
 
 export default router;
